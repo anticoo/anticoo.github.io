@@ -1,0 +1,25 @@
+language: node_js
+node_js: 10.3.0
+
+install:
+ - npm install
+
+script:
+ - hexo g
+
+after_script:
+ - cd ./public
+ - git init
+ - git config user.name "mucco"
+ - git config user.email "mufan0313@163.com"
+ - git pull "https://${GH_TOKEN}@${GH_REF}" master:master
+ - git add .&& git commit -m "Update"
+ - git push --quiet "https://${GH_TOKEN}@${GH_REF}" master:master
+
+branches:
+ only:
+  - blog
+
+env:
+ global:
+  - GH_REF: github.com/anticoo/anticoo.github.io.git
