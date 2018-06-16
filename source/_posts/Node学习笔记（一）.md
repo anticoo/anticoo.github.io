@@ -11,21 +11,26 @@ tags: NodeJS
 
 不同于C，C++，JAVA等编译型语言（需要对应的编译器编译后才能执行），JavaScript这类在运行时才解释执行的称为解释型语言，由于大部分的JavaScript都在浏览器中执行，所以对应的解释器一般都嵌入到浏览器内部。V8即是一款最初服务于Chrome的开源引擎。同时也被其他项目使用，比如Node.js。
 
-{% asset_img /images/0616/node-Framework.png %} 
+{% asset_img ../images/0616/node-Framework.png %} 
 
 上图为Node.js的架构，除了顶层组件使用JavaScript编写，其他层使用C/C++编写：
 
 * 顶层的Node.js API直接暴露给外界调用
 * 中间层的Node.js Bingdings负责将更底层的系统API提供给顶层调用，C/C++ Addons是为了便于对Node进行扩展的接口
 * 第三层是Node运行的核心，包括6大块
-{% blockquote %}
-V8 提供JavaScript运行环境
-LibUv 提供了事件循环(Event loop)，线程池(Thread loop)，异步IO(Async I/O)等核心功能
-c-ares 提供异步处理DNS解析的能力
-http parser 负责解析HTTP请求与响应
-OpenSSL 负责数据传输的安全性，以及提供一些必要的加密算法支持
-zlib 通用数据压缩库
-{% endblockquote %}
+
+> V8 提供JavaScript运行环境
+>
+> LibUv 提供了事件循环(Event loop)，线程池(Thread loop)，异步IO(Async I/O)等核心功能
+>
+> c-ares 提供异步处理DNS解析的能力
+>
+> http parser 负责解析HTTP请求与响应
+>
+> OpenSSL 负责数据传输的安全性，以及提供一些必要的加密算法支持
+>
+> zlib 通用数据压缩库
+
 其中，当V8解释执行JavaScript的同时，LibUv处理事件循环和I/O操作。
 
 1. 非阻塞I/O
@@ -48,11 +53,11 @@ zlib 通用数据压缩库
 
    需要注意的是，事件循环是单线程实现异步的一种机制，并不是node特有。不过Node.js的事件循环的运行机制不同于JavaScript运行的浏览器环境。
 
-   {% asset_img /images/0616/node-event-loop.png Node.js事件循环 %} 
+   {% asset_img ../images/0616/node-event-loop.png Node.js事件循环 %} 
 
-   {% asset_img /images/0616/node-run-task.png Node.js执行栈 %} 
+   {% asset_img ../images/0616/node-run-task.png Node.js执行栈 %} 
 
-   {% asset_img /images/0616/browser-event-loop.png JavaScript在浏览器中的事件循环 %} 
+   {% asset_img ../images/0616/browser-event-loop.png JavaScript在浏览器中的事件循环 %} 
 
    
 
